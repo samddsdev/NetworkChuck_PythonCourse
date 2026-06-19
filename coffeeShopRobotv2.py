@@ -7,15 +7,14 @@ def clear_screen(): os.system('cls' if os.name == 'nt' else 'clear')
 def loadingdots() : 
     loadCount = 0
     while loadCount < 2:
-        time.sleep(0.3)
-        print(" .")
-        time.sleep(0.3)
         clear_screen()
-        print(" . .")
-        time.sleep(0.3)
-        clear_screen()
-        print(" . . .")
-        time.sleep(0.3)
+        time.sleep(0.2)
+        print(" .", end="", flush=True)
+        time.sleep(0.2)
+        print(" .", end="", flush=True)
+        time.sleep(0.2)
+        print(" .", end="", flush=True)
+        time.sleep(0.2)
         clear_screen()
         loadCount += 1
 
@@ -56,7 +55,7 @@ coffee_menu = ["Americano", "Cappuccino", "Caf\u00e9 Latte", "Espresso", "Flat W
 # Displays the coffee menu. Uses a for loop to count and print the coffee_menu list
 for number, drink in enumerate(coffee_menu, start=1):
     print(f"{number}. {drink}")
-    time.sleep(0.1)
+    time.sleep(0.05)
 
 
 # Make sure the user enters an integer
