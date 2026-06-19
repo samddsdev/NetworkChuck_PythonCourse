@@ -4,6 +4,21 @@ import os # imports the module that allows Python to talk to the OS terminal.
 # define it as a function to be called later in the program
 def clear_screen(): os.system('cls' if os.name == 'nt' else 'clear')
 
+def loadingdots() : 
+    loadCount = 0
+    while loadCount < 2:
+        time.sleep(0.3)
+        print(" .")
+        time.sleep(0.3)
+        clear_screen()
+        print(" . .")
+        time.sleep(0.3)
+        clear_screen()
+        print(" . . .")
+        time.sleep(0.3)
+        clear_screen()
+        loadCount += 1
+
 ############# Program a robot to take your coffee order ######################
 
 #Find current local time
@@ -19,6 +34,8 @@ elif local_time.tm_hour >= 12:
 else:
     salutation = "morning"
 
+loadingdots()
+
 ### Greeting Section: ###
 clear_screen()
 print(f"Good {salutation} and welcome to our coffee shop!\n")
@@ -28,7 +45,7 @@ name = input("What is your name?\n")
 print("\nHi " + name + ", thank you for coming in today!\n")
 
 ### Taking order section: ###
-#clear_screen()
+clear_screen()
 
 print("What would you like to order " + name + "?\n")
 time.sleep(0.5)
@@ -56,5 +73,6 @@ while True:
     except ValueError: 
         print("\033[31mInvalid input:\033[0m Please type a whole number.\n")
 
-#clear_screen()
+loadingdots()
+
 print("\nYour " + coffee_menu[coffee_selection - 1] + " is coming right up!\n")
