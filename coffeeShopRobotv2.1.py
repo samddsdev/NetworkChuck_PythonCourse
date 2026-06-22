@@ -2,11 +2,11 @@
 
 #imports:
 import sys # Used to manipulate the Python runtime. Needed for sys.exit()
-import os # Allows Python to talk to the Operating System. Needed for clear_screen()
 import time # Needed to access system time. Needed for time.sleep()
 
 # Clear the terminal screen before running Python script.
-def clear_screen(): os.system('cls' if os.name == 'nt' else 'clear') # 'nt' means Windows, 'posix' means a Unix based OS
+def clear_screen(): 
+    print("\033[H\033[2J\n", end="") # \033[H moves the cursor to the top left corner. \033[2J clears the terminal screen.
 
 # Fake loading animation. Can be customised with "text" and how many times to loop it
 def loadingdots(text, duration_cycles) : 
@@ -42,13 +42,19 @@ try: # "Listens" for Ctrl+C input to end program cleanly.
     clear_screen()
     print(f"Good {salutation} and welcome to our coffee shop!\n")
     time.sleep(0.5) # breifly pauses the program for (seconds)
-    name = input("What is your name?\n")
-    name = name.capitalize() # changes customer name to sentence case (i.e. Sam not sam, SAM, sAm etc.)
+    name = input("What is your name?\n").capitalize().strip() # capitalises first letter of name and removes spaces.
 
-    if name == "Ben": # denies Ben entry to coffee shop and ends program
+    if name == "Ben": 
         clear_screen()
-        print("You're not welcome in here " + name + "! GET OUT!!")
-        sys.exit(0) # ends the program cleanly without errors (0)
+        evil_status = input("Are you evil?\n").lower().strip()
+        if evil_status == "yes": # denies evil Ben entry to coffee shop and ends program
+            clear_screen()
+            print("You're not welcome in here " + name + "! GET OUT!!")
+            sys.exit(0) # ends the program cleanly without errors (0)
+        else:
+            clear_screen()
+            print("Oh, you're one of those good Bens. Come on in!")
+            time.sleep(3)
     else:
         print("\nHi " + name + ", thank you for coming in today!\n")
 
@@ -72,7 +78,7 @@ try: # "Listens" for Ctrl+C input to end program cleanly.
     while True:
         try: 
             time.sleep(0.5)
-            coffee_selection = int(input("\nPlease enter the number option of your choice.\n"))
+            coffee_selection = int(input("\nPlease enter the number option of your choice.\n").strip())
 
             # Make sure number entered is between 1 and 5. 
             if 1 <= coffee_selection <= len(coffee_menu): # If 1 is less than or equal to the number entered and less than or equal to the length of the coffee list.
@@ -84,7 +90,7 @@ try: # "Listens" for Ctrl+C input to end program cleanly.
             print("\033[31mInvalid input:\033[0m Please type a whole number.\n")
 
     # Ask customer how many coffees they would like to order and calculate their total bill
-    no_of_coffees = int(input("\nHow many " + coffee_menu[coffee_selection - 1] + "s would you like?\n"))
+    no_of_coffees = int(input("\nHow many " + coffee_menu[coffee_selection - 1] + "s would you like?\n").strip())
 
     total_bill = float(coffee_price * no_of_coffees)
     clear_screen()
