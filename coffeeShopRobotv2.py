@@ -59,7 +59,6 @@ try: # Listens for Ctrl+C to end program cleanly.
         print(f"{number}. {drink}")
         time.sleep(0.05)
 
-
     # Make sure the user enters an integer
     while True:
         try: 
