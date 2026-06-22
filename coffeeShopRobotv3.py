@@ -91,7 +91,6 @@ try: # Listens for Ctrl+C to end program cleanly.
     clear_screen()
     print("What else can I get for you?")
     
-
     loadingdots()
 
     print("\nYour " + coffee_menu[coffee_selection - 1] + " is coming right up!\n")
