@@ -4,26 +4,25 @@ import os # imports the module that allows Python to talk to the OS terminal.
 # define it as a function to be called later in the program
 def clear_screen(): os.system('cls' if os.name == 'nt' else 'clear')
 
-def loadingdots() : 
+def loadingdots(text, duration_cycles) : # Fake loading animation. Can be customised with "text" and how many times to loop it
     loadCount = 0
-    while loadCount < 1:
+    while loadCount < duration_cycles:
         clear_screen()
+        #time.sleep(0.3)
+        print(text,".", end="", flush=True)
         time.sleep(0.3)
-        print(" .", end="", flush=True)
+        print(".", end="", flush=True)
         time.sleep(0.3)
-        print(" .", end="", flush=True)
+        print(".", end="", flush=True)
         time.sleep(0.3)
-        print(" .", end="", flush=True)
-        time.sleep(0.3)
-        clear_screen()
         loadCount += 1
 
 ############# Program a robot to take your coffee order ######################
 
 #Find current local time
-import time
-import sys
-local_time = time.localtime()
+import time # Needed for time
+import sys # Needed for the sleep function 
+local_time = time.localtime() # Presents local time in human readable format. Used to extract .tm_hour value.
 #print(local_time.tm_hour)
 
 # Change salutation based on time of day; morning, afternoon, evening.
@@ -34,10 +33,12 @@ elif local_time.tm_hour >= 12:
 else:
     salutation = "morning"
 
-try: # Listens for Ctrl+C to end program cleanly.
-    loadingdots()
 
-    ### Greeting Section: ###
+### Main program starts here: ###
+
+try: # "Listens" for Ctrl+C input to end program cleanly.
+
+    ## Greeting Section: ##
     clear_screen()
     print(f"Good {salutation} and welcome to our coffee shop!\n")
     time.sleep(0.5) # breifly pause the program for (seconds)
@@ -54,18 +55,17 @@ try: # Listens for Ctrl+C to end program cleanly.
     # Store coffee menu as list
     coffee_menu = ["Americano", "Cappuccino", "Caf\u00e9 Latte", "Espresso", "Flat White"]
 
-    # Displays the coffee menu. Uses a for loop to count and print the coffee_menu list
-    for number, drink in enumerate(coffee_menu, start=1):
+    # Displays the coffee menu. Uses a for loop to count the items in the coffee_menu list and prints it
+    for number, drink in enumerate(coffee_menu, start=1): # Start counting at 1 rather than 0.
         print(f"{number}. {drink}")
-        time.sleep(0.05)
-
 
     # Set a price for the coffee menu
-    coffee_price = float(3.50)
+    coffee_price = float(2.50)
 
     # Make sure the user enters an integer
     while True:
         try: 
+            time.sleep(0.5)
             coffee_selection = int(input("\nPlease enter the number option of your choice.\n"))
 
             # Make sure number entered is between 1 and 5. 
@@ -74,17 +74,19 @@ try: # Listens for Ctrl+C to end program cleanly.
             else:
                 print(f"\033[31mInvalid input:\033[0m Please type a number between 1 and  {len(coffee_menu)}.\n")
         
-        except ValueError: 
+        except ValueError: # Catches error if a non integer is inputted.
             print("\033[31mInvalid input:\033[0m Please type a whole number.\n")
 
     # Ask customer how many coffees they would like to order and calculate their total bill
     no_of_coffees = int(input("\nHow many " + coffee_menu[coffee_selection - 1] + "s would you like?\n"))
 
     total_bill = float(coffee_price * no_of_coffees)
+    clear_screen()
+    input(f"\nYour total is: £{total_bill:.2f}\n(Press enter to pay)")
 
-    input(f"\n\nThat will be £{total_bill:.2f} please")
-
-    loadingdots()
+    loadingdots("Payment processing", 3)
+    clear_screen()
+    print("Payment Successful!")
 
     if no_of_coffees > 1:
         print(f"\nThank you {name}, your {no_of_coffees} {coffee_menu[coffee_selection - 1]}s are coming right up!\n")
