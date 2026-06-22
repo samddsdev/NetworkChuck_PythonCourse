@@ -54,47 +54,41 @@ try: # Listens for Ctrl+C to end program cleanly.
     # Store coffee menu as list
     coffee_menu = ["Americano", "Cappuccino", "Caf\u00e9 Latte", "Espresso", "Flat White"]
 
-    customer_order = [] # Create empty order list first
-
     # Displays the coffee menu. Uses a for loop to count and print the coffee_menu list
     for number, drink in enumerate(coffee_menu, start=1):
         print(f"{number}. {drink}")
         time.sleep(0.05)
 
+
+    # Set a price for the coffee menu
+    coffee_price = float(3.50)
+
     # Make sure the user enters an integer
     while True:
-            while True:
-                try: 
-                    coffee_selection = int(input("\nPlease enter the number option of your choice.\n"))
+        try: 
+            coffee_selection = int(input("\nPlease enter the number option of your choice.\n"))
 
-                    # Make sure number entered is between 1 and 5. 
-                    if 1 <= coffee_selection <= len(coffee_menu): # If 1 is less than or equal to the number entered and less than or equal to the length of the coffee list.
-                        customer_order.append(coffee_selection)
-                        break # Valid input, continue with program.
-                    else:
-                        print(f"\033[31mInvalid input:\033[0m Please type a number between 1 and  {len(coffee_menu)}.\n")
-                
-                except ValueError: # If an integer is inputted.
-                    print("\033[31mInvalid input:\033[0m Please type a whole number.\n")
-
-            for drink in customer_order: # Print contents of customer order in a list
-                print(customer_order)
-
-            add_more = input("\nWould you like to order more? y/n: ".lower().strip())
-
-            if add_more == "n":
-                break # continues program to checkout order
+            # Make sure number entered is between 1 and 5. 
+            if 1 <= coffee_selection <= len(coffee_menu): # If 1 is less than or equal to the number entered and less than or equal to the length of the coffee list.
+                break # Valid input, continue with program.
             else:
-                if add_more != "y" or "n":
-                    
-                    print("Invalid input: please type y or n")
-    clear_screen()
-    print("What else can I get for you?")
-    
+                print(f"\033[31mInvalid input:\033[0m Please type a number between 1 and  {len(coffee_menu)}.\n")
+        
+        except ValueError: 
+            print("\033[31mInvalid input:\033[0m Please type a whole number.\n")
+
+    # Ask customer how many coffees they would like to order and calculate their total bill
+    no_of_coffees = int(input("\nHow many " + coffee_menu[coffee_selection - 1] + "s would you like?\n"))
+
+    total_bill = float(coffee_price * no_of_coffees)
+
+    input(f"\n\nThat will be £{total_bill:.2f} please")
 
     loadingdots()
 
-    print("\nYour " + coffee_menu[coffee_selection - 1] + " is coming right up!\n")
+    if no_of_coffees > 1:
+        print(f"\nThank you {name}, your {no_of_coffees} {coffee_menu[coffee_selection - 1]}s are coming right up!\n")
+    else: print(f"\nThank you {name}, your {coffee_menu[coffee_selection - 1]} is coming right up!\n")
 
 except KeyboardInterrupt: # When Ctrl+C is pressed, end the program cleanly.
     print("\033[31m -- Program Interrupted --\033[0m")

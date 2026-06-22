@@ -6,15 +6,15 @@ def clear_screen(): os.system('cls' if os.name == 'nt' else 'clear')
 
 def loadingdots() : 
     loadCount = 0
-    while loadCount < 2:
+    while loadCount < 1:
         clear_screen()
-        time.sleep(0.2)
+        time.sleep(0.3)
         print(" .", end="", flush=True)
-        time.sleep(0.2)
+        time.sleep(0.3)
         print(" .", end="", flush=True)
-        time.sleep(0.2)
+        time.sleep(0.3)
         print(" .", end="", flush=True)
-        time.sleep(0.2)
+        time.sleep(0.3)
         clear_screen()
         loadCount += 1
 
