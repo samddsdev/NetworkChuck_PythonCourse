@@ -89,15 +89,15 @@ try:  # "Listens" for Ctrl+C input to end program cleanly.
 
     # Set price for the coffee
     if coffee_selection == 1:
-        coffee_price = float(2.60)
+        coffee_price = 2.60
     elif coffee_selection == 2:
-        coffee_price = float(3.00)
+        coffee_price = 3.00
     elif coffee_selection == 3:
-        coffee_price = float(3.00)
+        coffee_price = 3.00
     elif coffee_selection == 4:
-        coffee_price = float(2.30)
+        coffee_price = 2.30
     elif coffee_selection == 5:
-        coffee_price = float(2.80)
+        coffee_price = 2.80
 
     # Ask customer how many coffees they would like to order and calculate their total bill
     print(f"\n{coffee_menu[coffee_selection - 1]}s are £{coffee_price:.2f}")
@@ -109,7 +109,7 @@ try:  # "Listens" for Ctrl+C input to end program cleanly.
         except ValueError: # if a non integer is inputted display error
             print("\033[31mInvalid input:\033[0m Please type a whole number.\n")
 
-    total_bill = float(coffee_price * no_of_coffees)
+    total_bill = coffee_price * no_of_coffees
     clear_screen()
     input(f"\nYour total is: £{total_bill:.2f}\n(Press enter to pay)")
 
