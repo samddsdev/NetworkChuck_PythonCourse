@@ -26,7 +26,6 @@ def loadingdots(text, duration_cycles):
         time.sleep(0.3)
         loadCount += 1
 
-
 # Find current local time
 local_time = (
     time.localtime()
