@@ -52,14 +52,14 @@ try:  # "Listens" for Ctrl+C input to end program cleanly.
             print(f"Oh, you're one of those good {name}s. Come on in!")
             time.sleep(3)
         elif evil_status == "yes":
-            good_deeds = int(input("How many good deeds have you done this week?\n").strip())
+            good_deeds = int(input("\nHow many good deeds have you done this week?\n").strip())
             if evil_status == "yes" and good_deeds < 4:  # denies person entry if are evil and have done less than 4 good deeds
                 clear_screen()
                 print("You're not welcome in here " + name + "! Get Out!!")
                 sys.exit(0)  # ends the program cleanly without errors (0)
             elif evil_status == "yes" and good_deeds >= 4: # allows person entry if are evil and have done 4 or more good deeds
                 clear_screen()
-                print("As you have done enough good deeds, you are welcome.")
+                print("\nAs you have done enough good deeds, you are welcome.")
                 time.sleep(3)
             
     else:
@@ -100,7 +100,7 @@ try:  # "Listens" for Ctrl+C input to end program cleanly.
         coffee_price = 3.00
     elif coffee_selection == 3:
         while True:
-            addCream = input("\nWould you like to add whipped cream on top for an 50p?\n").lower().strip()
+            addCream = input("\nWould you like to add whipped cream on top for 50p?\n").lower().strip()
             if addCream == "yes" or addCream =="no":
                 break
             else:
