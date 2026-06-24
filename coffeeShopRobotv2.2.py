@@ -9,7 +9,6 @@ import time  # Needed to access system time. Needed for time.sleep()
 def clear_screen():
     print("\033[H\033[2J\n", end="")  # \033[H moves the cursor to the top left corner. \033[2J clears the terminal screen.
 
-
 # Fake loading animation. Can be customised with "text" and how many times to loop it
 def loadingdots(text, duration_cycles):
     loadCount = 0
