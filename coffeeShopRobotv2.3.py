@@ -53,7 +53,7 @@ try:  # "Listens" for Ctrl+C input to end program cleanly.
             sys.exit(0)  # ends the program cleanly without errors (0)
         else:
             clear_screen()
-            print("Oh, you're one of those good Bens. Come on in!")
+            print(f"Oh, you're one of those good {name}s. Come on in!")
             time.sleep(3)
     else:
         print("\nHi " + name + ", thank you for coming in today!\n")
