@@ -74,7 +74,6 @@ try: # Listens for Ctrl+C to end program cleanly.
             print("\033[31mInvalid input:\033[0m Please type a whole number.\n")
 
     loadingdots()
-
     print("\nYour " + coffee_menu[coffee_selection - 1] + " is coming right up!\n")
 
 except KeyboardInterrupt: # When Ctrl+C is pressed, end the program cleanly.
